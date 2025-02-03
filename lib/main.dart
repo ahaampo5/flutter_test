@@ -85,9 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+              // 알림 버튼 동작
+
+            },
+          ),
+        ],
         title: Text(widget.title),
       ),
-      body: _pages[_selectedIndex], // This trailing comma makes auto-formatting nicer for build methods.
+      body: _pages[_selectedIndex], // ㅅ
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -105,6 +114,41 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+      ),
+        persistentFooterButtons: [
+            TextButton(
+              onPressed: () {},
+              child: Text('취소'),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text('확인'),
+            ),
+          ],
+          drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Theme.of(context).colorScheme.inversePrimary),
+              child: Text('메뉴', style: TextStyle(color: Colors.white, fontSize: 24)),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('홈'),
+              onTap: () {
+                print("홈 클릭됨");
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('설정'),
+              onTap: () {
+                print("설정 클릭됨");
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -161,9 +205,6 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Screen'),
-      ),
       body: Center(
         child: Text('First Screen $_const'),
       ),
